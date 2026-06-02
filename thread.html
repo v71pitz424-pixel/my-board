@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+<title>スレッド</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<p>
+<a href="threads.html">
+← スレッド一覧へ戻る
+</a>
+</p>
+
+<h1 id="title"></h1>
+
+<div id="firstPost"></div>
+
+<hr>
+
+<input
+id="name"
+placeholder="名前">
+
+<br><br>
+
+<textarea
+id="message"
+placeholder="レスを書く"></textarea>
+
+<br>
+
+<button onclick="postReply()">
+投稿
+</button>
+
+<hr>
+
+<div id="replies"></div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

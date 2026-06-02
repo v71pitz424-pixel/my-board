@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+<title>スレッド一覧</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>スレッド一覧</h1>
+
+<p>
+<a href="index.html">
+トップページへ戻る
+</a>
+</p>
+
+<input
+id="threadTitle"
+placeholder="スレッドタイトル">
+
+<br><br>
+
+<input
+id="threadName"
+placeholder="名前">
+
+<br><br>
+
+<textarea
+id="threadMessage"
+placeholder="本文"></textarea>
+
+<br>
+
+<button onclick="createThread()">
+スレッド作成
+</button>
+
+<hr>
+
+<div id="threadList"></div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

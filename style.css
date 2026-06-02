@@ -2,7 +2,8 @@ body {
     font-family: sans-serif;
     max-width: 600px;
     margin: auto;
-    padding: 20px;
+    padding: 15px;
+    line-height: 1.6;
 }
 
 input,
@@ -16,12 +17,21 @@ textarea {
 }
 
 button {
+    button {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+}
 }
 
 .post {
     border: 1px solid #ccc;
     padding: 10px;
     margin-top: 10px;
+}
+
+input,
+textarea,
+button {
+    box-sizing: border-box;
 }
