@@ -176,6 +176,7 @@ async function loadThreadPage(){
     );
 
 firstPost.innerHTML = `
+
 <div
 class="post"
 id="reply-1">
@@ -201,6 +202,7 @@ ${thread.firstMessage}
 </p>
 
 </div>
+
 `;
 }
 
