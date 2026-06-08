@@ -167,6 +167,13 @@ async function loadThreadPage(){
     const thread =
         docSnap.data();
 
+    const createdDate =
+    thread.createdAt
+        ? thread.createdAt
+            .toDate()
+            .toLocaleString("ja-JP")
+        : "日時不明";
+
     titleArea.textContent =
         thread.title;
 
@@ -176,7 +183,6 @@ async function loadThreadPage(){
     );
 
 firstPost.innerHTML = `
-
 <div
 class="post"
 id="reply-1">
@@ -197,12 +203,17 @@ ${thread.createdBy}
 
 </strong>
 
+<br>
+
+<small>
+${createdDate}
+</small>
+
 <p>
 ${thread.firstMessage}
 </p>
 
 </div>
-
 `;
 }
 
