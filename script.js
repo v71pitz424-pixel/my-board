@@ -84,6 +84,10 @@ ${escapeHtml(thread.title)}
 </div>
 `;
 
+            }
+        );
+    }
+);
 }
 
 async function createThread(){
