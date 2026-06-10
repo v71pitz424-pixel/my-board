@@ -11,8 +11,10 @@ import {
     doc,
     getDoc,
     updateDoc,
+    increment,
     onSnapshot
 }
+
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 function escapeHtml(text){
@@ -63,9 +65,7 @@ async function loadThreads(){
                     doc.data();
 
                 const replyCount =
-    thread.replies
-        ? thread.replies.length + 1
-        : 1;
+    thread.replyCount || 1;
 
 list.innerHTML += `
 <div class="thread-row">
@@ -96,54 +96,57 @@ async function createThread(){
         "threadTitle"
     ).value;
 
-const name =
-    document.getElementById(
-        "threadName"
-    ).value;
+    const name =
+        document.getElementById(
+            "threadName"
+        ).value;
 
-localStorage.setItem(
-    "userName",
-    name
-);
+    localStorage.setItem(
+        "userName",
+        name
+    );
 
-const message =
-    document.getElementById(
-        "threadMessage"
-    ).value;
+    const message =
+        document.getElementById(
+            "threadMessage"
+        ).value;
 
-if(!title || !message) return;
+    if(!title || !message) return;
 
     await addDoc(
-    collection(
-        db,
-        "threads"
-    ),
-    {
+        collection(
+            db,
+            "threads"
+        ),
+        {
 
-        title:title,
+            title:
+                title,
 
-        createdBy:
-            name || "スレ主",
+            createdBy:
+                name || "スレ主",
 
-        firstMessage:
-            message,
+            firstMessage:
+                message,
 
-        createdAt:
-            serverTimestamp(),
+            createdAt:
+                serverTimestamp(),
 
-        lastUpdated:
-            serverTimestamp()
+            lastUpdated:
+                serverTimestamp(),
 
-    }
-);
+            replyCount:
+                1
 
-alert(
-    "スレッドを作成しました"
-);
+        }
+    );
 
-location.href =
-    "threads.html";
+    alert(
+        "スレッドを作成しました"
+    );
 
+    location.href =
+        "threads.html";
 }
 
 async function loadThreadPage(){
@@ -292,7 +295,10 @@ async function postReply(){
         threadRef,
         {
             lastUpdated:
-                serverTimestamp()
+                serverTimestamp(),
+
+            replyCount:
+                increment(1)
         }
     );
 
@@ -355,18 +361,6 @@ function loadReplies(){
 
                 const currentNumber =
                     replyNumber++;
-
-                console.log(
-    "replyNumber",
-    replyNumber,
-    "currentNumber",
-    currentNumber
-);
-
-console.log(
-    "snapshot size",
-    snapshot.size
-);
 
                 const replyDate =
                     reply.createdAt
